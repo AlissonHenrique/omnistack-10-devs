@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, View, Text } from "react-native";
-import MapView, { Marker, Callout } from "react-native-maps";
-import {
-  requestPermissionsAsync,
-  getCurrentPositionAsync
-} from "expo-location";
+import MapView, { Marker, Callout } from 'react-native-maps';
+import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
+
 export default function Main({ navigation }) {
   const [currentRegion, setCurrentRegion] = useState(null);
-
   useEffect(() => {
-    async function loadlInitialPosition() {
+    async function loadInitPosition() {
       const { granted } = await requestPermissionsAsync();
       if (granted) {
         const { coords } = await getCurrentPositionAsync({
@@ -24,8 +21,8 @@ export default function Main({ navigation }) {
         });
       }
     }
-    loadlInitialPosition();
-  });
+    loadInitPosition()
+  }, [])
 
   if (!currentRegion) {
     return null;
@@ -33,21 +30,22 @@ export default function Main({ navigation }) {
 
   return (
     <MapView initialRegion={currentRegion} style={styles.map}>
-      <Marker coordinate={{ latitude: -27.2111164, longitude: -49.6374491 }}>
-        <Image style={styles.avatar} source={{ uri: "asdasd" }} />
+      <Marker coordinate={{ latitude: -23.5987496, longitude: -46.7097794 }}>
+        <Image style={styles.avatar} source={{ uri: "https://avatars3.githubusercontent.com/u/17318431?s=460&v=4" }} />
         <Callout
           onPress={() => {
-            navigation.navigate("Profile", { github_uresername: "diego3g" });
+            navigation.navigate("Profile", { github_uresername: "AlissonHenrique" });
           }}
         >
           <View style={styles.callout}>
-            <Text style={styles.devName}>Asd</Text>
+            <Text style={styles.devName}>Alisson Henrique</Text>
             <Text style={styles.devBio}>Asd</Text>
             <Text style={styles.devTechs}>Asd</Text>
           </View>
         </Callout>
       </Marker>
     </MapView>
+
   );
 }
 const styles = StyleSheet.create({

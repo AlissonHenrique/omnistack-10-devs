@@ -1,12 +1,10 @@
-import React from "react";
-import { WebView } from "react-native-webview";
+import React from 'react';
+import { View } from 'react-native';
 
-export default function Profile({ navigation }) {
-  const githubUsername = navigation.getParam("github_username");
+// import { Container } from './styles';
+
+export default function Profile() {
   return (
-    <WebView
-      style={{ flex: 1 }}
-      source={{ uri: `https://github.com/${githubUsername}` }}
-    />
+    <View />
   );
 }
